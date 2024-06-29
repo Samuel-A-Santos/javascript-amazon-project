@@ -82,4 +82,4 @@ const businessCart = Cart('cart-business');
 
 cart.loadFromLocalStorage();
 
-
+businessCart.loadFromLocalStorage();
