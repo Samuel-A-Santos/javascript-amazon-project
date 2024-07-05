@@ -56,6 +56,28 @@ class Clothing extends Product {
   }
 }
 
+// const date = new Date();
+// date.toLocaleDateString();
+
+// const object2 = {
+//   a: 2,
+//   b: this.a,
+// };
+
+// function logThis() {
+//   console.log(this);
+// }
+
+// logThis();
+// logThis.call("hello");
+
+// const object3 = {
+//   method: () => {
+//     console.log(this);
+//   },
+// };
+
+// object3.method();
 const tshirt = new Clothing({
   id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
   image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
