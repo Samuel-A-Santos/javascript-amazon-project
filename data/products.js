@@ -109,7 +109,7 @@ product1.name = "";
 
 export let products = [];
 
-function loadProducts() {
+export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener("load", (productDetails) => {
@@ -119,6 +119,7 @@ function loadProducts() {
       }
       return new Product(productDetails);
     })
+    fun()
   });
   xhr.open("GET", "https://supersimplebackend.dev/products");
   xhr.send();

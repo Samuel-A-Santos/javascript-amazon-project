@@ -1,12 +1,15 @@
 import { cart, addToCart } from "../data/cart.js";
-import { products } from "../data/products.js";
+import { products, loadProducts } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
-let productsHTML = "";
+loadProducts();
 
-products.forEach((product) => {
-  //é chamado de accumulator pattern, ele faz um loop no array e cada vez ele adiciona no resultado
-  productsHTML += `
+function rederProductsGird(rederProductsGird) {
+  let productsHTML = "";
+
+  products.forEach((product) => {
+    //é chamado de accumulator pattern, ele faz um loop no array e cada vez ele adiciona no resultado
+    productsHTML += `
             <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
@@ -58,24 +61,25 @@ products.forEach((product) => {
             Add to Cart
           </button>
         </div>`;
-});
-
-document.querySelector(".js-products-grid").innerHTML = productsHTML;
-
-function updateCartQuantity() {
-  let cartQuatity = 0;
-
-  cart.forEach((cartItem) => {
-    cartQuatity += cartItem.quantity;
   });
 
-  document.querySelector(".js-cart-quantity").innerHTML = cartQuatity;
+  document.querySelector(".js-products-grid").innerHTML = productsHTML;
+
+  function updateCartQuantity() {
+    let cartQuatity = 0;
+
+    cart.forEach((cartItem) => {
+      cartQuatity += cartItem.quantity;
+    });
+
+    document.querySelector(".js-cart-quantity").innerHTML = cartQuatity;
+  }
+
+  document.querySelectorAll(".js-add-to-cart").forEach((button) => {
+    button.addEventListener("click", () => {
+      const productId = button.dataset.productId;
+      addToCart(productId);
+      updateCartQuantity();
+    });
+  });
 }
-
-document.querySelectorAll(".js-add-to-cart").forEach((button) => {
-  button.addEventListener("click", () => {
-    const productId = button.dataset.productId;
-    addToCart(productId);
-    updateCartQuantity();
-  });
-});
